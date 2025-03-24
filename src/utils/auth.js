@@ -1,7 +1,7 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import prisma from "./connect";
+import GithubProvider from "next-auth/providers/github";
+import prisma from "@/utils/connect"; // ✅ مسار صحيح
 import { getServerSession } from "next-auth";
 
 export const authOptions = {
@@ -16,6 +16,7 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export const getAuthSession = () => getServerSession(authOptions);
