@@ -18,13 +18,6 @@ export const GET = async (req) => {
     },
   };
 
-
-
-
-
-
-  
-  
   try {
     const [posts, count] = await prisma.$transaction([
       prisma.post.findMany(query),
@@ -38,15 +31,6 @@ export const GET = async (req) => {
     );
   }
 };
-
-
-
-
-
-
-
-
-
 
 // CREATE A POST
 export const POST = async (req) => {
@@ -64,7 +48,7 @@ export const POST = async (req) => {
       data: { ...body, userEmail: session.user.email },
     });
 
-    return new NextResponse(JSON.stringify(post, { status: 200 }));
+    return new NextResponse(JSON.stringify(post), { status: 200 });
   } catch (err) {
     console.log(err);
     return new NextResponse(
